@@ -1,18 +1,18 @@
 'use strict';
-const slashCommand = (s) => {
+const slashCommand = function(s) {
   if (typeof s !== 'string') {
     throw new TypeError('Argument must be a string.');
   }
-  let cmds = s.split(' ')[0].match(/\/([\w-=:.@]+)/ig);
-  let slashcmds = null;
-  let subcmds = null;
-  let body = s.trim() || null;
+  var cmds = s.split(' ')[0].match(/\/([\w-=:.@]+)/ig);
+  var slashcmds = null;
+  var subcmds = null;
+  var body = s.trim() || null;
 
   if (cmds) {
     slashcmds = cmds.join('');
-    cmds = cmds.map(x => x.replace('/',''));
-    subcmds = cmds.length > 1 ? cmds.filter(v => v !== cmds[0]) : null;
-    body = s.split(' ').filter((v, i) => i > 0).join(' ').trim() || null;
+    cmds = cmds.map(function(x) { return x.replace('/',''); });
+    subcmds = cmds.length > 1 ? cmds.filter(function(v) { return v !== cmds[0]}) : null;
+    body = s.split(' ').filter(function(v, i) {return i > 0}).join(' ').trim() || null;
   }
 
   return {
